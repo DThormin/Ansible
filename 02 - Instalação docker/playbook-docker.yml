@@ -5,14 +5,12 @@
   tasks:
     - name: "Atualiza pacotes"
       shell: sudo apt-get update
+    - name: "Instala pacotes"
         package:
-        name: ca-certificates
-        state: latest
-        name: curl
-        state: latest 
-        name: gnupg
-        state: latest       
-        name: lsb-release
+         - ca-certificates
+         - curl
+         - gnupg
+         - lsb-release
         state: latest        
 
 #      shell: mkdir -p /etc/apt/keyrings
