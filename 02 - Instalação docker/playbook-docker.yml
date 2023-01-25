@@ -1,17 +1,28 @@
 ---
-- hosts: all
-#  sudo: True
+- name: Atualizando pacotes e instalando o Docker
+  hosts: all
+  #  sudo: True
   user: root
   tasks:
-    - name: "Atualiza pacotes"
-      shell: sudo apt-get update
-    - name: "Instala pacotes"
-        package:
-         - ca-certificates
-         - curl
-         - gnupg
-         - lsb-release
-        state: latest        
+  - name: Atualizando pacotes apt
+    apt:
+      update_cache: yes
+  - name: Instalando o Docker
+    apt:
+      name: docker.io
+      state: present
+
+  
+#  tasks:
+#    - name: "Atualiza pacotes"
+#      shell: sudo apt-get update
+#    - name: "Instala pacotes"
+#       package:
+#         - ca-certificates
+#         - curl
+#         - gnupg
+#         - lsb-release
+#       state: latest        
 
 #      shell: mkdir -p /etc/apt/keyrings
 #     shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
