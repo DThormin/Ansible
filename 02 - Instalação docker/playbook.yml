@@ -1,6 +1,6 @@
 - hosts: all
   sudo: True
-  user: tormin1
+  user: root
   tasks:
     - name: "Atualiza pacotes"
       shell: sudo apt-get update
