@@ -1,3 +1,5 @@
+---
+- name: Intalar docker
 - hosts: all
   sudo: True
   user: root
