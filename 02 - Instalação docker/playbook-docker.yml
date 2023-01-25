@@ -5,18 +5,15 @@
   tasks:
     - name: "Atualiza pacotes"
       shell: sudo apt-get update
-      package:
-      name: ca-certificates
-      state: latest
-    
-      name: curl
-      state: latest 
-
-      name: gnupg
-      state: latest       
-    
-      name: lsb-release
-      state: latest        
+        package:
+        name: ca-certificates
+        state: latest
+        name: curl
+        state: latest 
+        name: gnupg
+        state: latest       
+        name: lsb-release
+        state: latest        
 
 #      shell: mkdir -p /etc/apt/keyrings
 #     shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
