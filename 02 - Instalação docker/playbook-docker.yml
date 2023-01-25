@@ -5,17 +5,17 @@
   tasks:
     - name: "Atualiza pacotes"
       shell: sudo apt-get update
-    - name: "Instala ca-certificate"
-      package: ca-certificates
+      package:
+      name: ca-certificates
       state: latest
-    - name: "Instala curl"
-      package: curl
+    
+      name: curl
       state: latest 
-    - name: "Instala gnupg"
-      package: gnupg
+
+      name: gnupg
       state: latest       
-    - name: "Instala lsb-release"
-      package: lsb-release
+    
+      name: lsb-release
       state: latest        
 
 #      shell: mkdir -p /etc/apt/keyrings
