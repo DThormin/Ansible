@@ -1,0 +1,35 @@
+---
+- name: Instalar Zabbix Agent
+  hosts: 10.10.10.20
+  become: true
+  tasks:
+    - name: Adicionar repositório Zabbix
+      apt_repository:
+        repo: 'deb http://repo.zabbix.com/zabbix/4.0/ubuntu bionic main'
+        state: present
+        key_url: 'http://repo.zabbix.com/zabbix-official-repo.key'
+
+    - name: Atualizar lista de pacotes
+      apt:
+        update_cache: yes
+
+    - name: Instalar Zabbix Agent
+      apt:
+        name: zabbix-agent
+        state: latest
+
+    - name: Configurar Zabbix Agent
+      template:
+        src: zabbix_agentd.conf.j2
+        dest: /etc/zabbix/zabbix_agentd.conf
+        owner: root
+        group: root
+        mode: 0644
+      vars:
+        zabbix_server: "10.10.10.10"
+        hostname: "{{ ansible_hostname }}"
+
+    - name: Iniciar serviço Zabbix Agent
+      service:
+        name: zabbix-agent
+        state: started

@@ -9,23 +9,37 @@
       update_cache: yes
   - name: Instalando o Docker
     apt:
-      name: docker.io
-      state: present
+      name: 
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+      state: latest
+  - name: Criação de pasta
+   shell: mkdir -p /etc/apt/keyrings
+  - name: 1
+   shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  - name: 2
+   shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - name: 3
+   shell: chmod a+r /etc/apt/keyrings/docker.gpg
+  - name: 4
+   shell: apt-get update
+  - name: 5
+   shell: apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin      
+
+   
+  
 
   
 #  tasks:
-#    - name: "Atualiza pacotes"
-#      shell: sudo apt-get update
-#    - name: "Instala pacotes"
+#    - n
 #       package:
-#         - ca-certificates
-#         - curl
-#         - gnupg
-#         - lsb-release
-#       state: latest        
+          - - docker.io
+#              
 
 #      shell: mkdir -p /etc/apt/keyrings
-#     shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+#      shell: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 #      shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 #      shell: chmod a+r /etc/apt/keyrings/docker.gpg
 #      shell: apt-get update
